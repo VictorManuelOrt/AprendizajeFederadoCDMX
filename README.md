@@ -135,6 +135,17 @@ Donde:
 - \( C \) es el umbral de recorte
 
 
+En esta versión se introduce un nuevo parámetro **C**: umbral de recorte. Este factor funciona para limitar el tamaño de los gradientes y evitar que actualizaciones excesivamente grandes afecten negativamente el proceso de optimización. Esta técnica se conoce como *gradient clipping* [Chen et al., 2020].
+
+En la figura a continuación, observamos cómo se comporta el proceso de optimización entre el SGD normal y el que perturba las actualizaciones. Como se puede ver, ambas convergen de manera similar.
+
+<div style="text-align: center;">
+  <img src="IMG/SDGFL.png" alt="Optimización normal" width="40%">
+  <img src="IMG/SDGFLDP.png" alt="Optimización con DP" width="40%">
+  <p>(a) Optimización normal (b) Optimización con DP</p>
+</div>
+
+Agregar más gráficas variando los otros parámetros y detallar lo que se está haciendo.
 
 
 
