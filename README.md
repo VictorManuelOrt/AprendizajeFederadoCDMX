@@ -96,6 +96,43 @@ Donde:
 
 
 
+Ahora, recordemos que nuestro objetivo es perturbar los parámetros de cada cliente para satisfacer la DP. En \cite{banse2024federated}, se propone que cada cliente actualice sus parámetros de manera local siguiendo la idea del SGD pero añadiendo una perturbación, como se puede ver en el Algoritmo \ref{AlgClientSDGDP}.
+
+```algorithm
+### Algoritmo 2: ClientUpdate basada en SGD versión DP
+**Resultado:** Parámetros del modelo entrenado \( w_{t+1} \)
+
+**Inicializar:** \( w_t \)
+
+Para cada época \( e = 1, \dots, E \):
+1. Muestrear al azar \( \left\lfloor \frac{n}{B} \right\rfloor \) lotes.
+2. Para cada \( j = 1, \dots, \left\lfloor \frac{n}{B} \right\rfloor \):
+   1. Para cada \( i = 1, \dots, B \):
+      - **Calcular gradiente:**
+      \[
+      g_j(x_i^j) \gets \nabla L(w_t, x_i^j)
+      \]
+      - **Recortar gradiente:**
+      \[
+      \bar{g}_j(x_i^j) \gets \frac{g_j(x_i^j)}{\max\left(1, \frac{\|g_j(x_i^j)\|_2}{C}\right)}
+      \]
+   2. **Añadir ruido:**
+      \[
+      \tilde{g}_j \gets \frac{1}{B} \left(\sum_{i=1}^{B} \bar{g}_j(x_i^j) + \mathcal{N}(0, \sigma^2 C^2 )\right)
+      \]
+   3. **Descenso del gradiente:**
+      \[
+      w_{t+1} \gets w_t - \eta \tilde{g}_j
+      \]
+
+**Salida:** Parámetros optimizados \( w_{t+1} \)
+```
+Donde:
+- \( \eta \) es la tasa de aprendizaje
+- \( L \) es la función a optimizar
+- \( B \) es el tamaño del lote
+- \( \sigma \) es la escala de ruido
+- \( C \) es el umbral de recorte
 
 
 
