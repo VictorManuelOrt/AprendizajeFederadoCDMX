@@ -63,5 +63,67 @@ donde \( \eta \) es la tasa de aprendizaje.
 
 
 
+En el Algoritmo \ref{AlgSDG} podemos ver de mejor manera cómo se realiza esta actualización para una sola iteración y cómo se crea la función `ClientUpdate` mencionada anteriormente.
+
+```algorithm
+### Algoritmo 1: ClientUpdate basada en SGD
+**Resultado:** Parámetros del modelo entrenado \( w_{t+1} \)
+
+**Inicializar:** \( w_t \).
+
+Para cada época \( e = 1, \dots, E \):
+1. Muestrear al azar \( \left\lfloor \frac{n}{B} \right\rfloor \) lotes
+2. Para cada \( j = 1, \dots, \left\lfloor \frac{n}{B} \right\rfloor \):
+   1. Para cada \( i = 1, \dots, B \):
+      - **Calcular gradiente:**
+      \[
+      g_j(x_i^j) \gets \nabla L(w_k, x_i^j)
+      \]
+   2. **Promedio del gradiente:**
+      \[
+      \tilde{g}_j \gets \frac{1}{B} \sum_{i=1}^{B} g_j(x_i^j)
+      \]
+   3. **Descenso del gradiente:**
+      \[
+      w_{t+1} \gets w_t - \eta \tilde{g}_j
+      \]
+**Salida:** Parámetros optimizados \( w_{t+1} \)
+```
+Donde:
+- \( \eta \) es la tasa de aprendizaje
+- \( L \) es la función a optimizar
+- \( B \) es el tamaño del lote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
