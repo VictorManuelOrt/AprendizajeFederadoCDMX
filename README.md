@@ -41,7 +41,6 @@ Aún con esto, resulta ser una alternativa viable para ciertas tareas de aprendi
 
 Pese a las ventajas y las múltiples aplicaciones que puede tener el FL, el hecho de tener un constante intercambio de parámetros lo hace vulnerable a que un adversario malicioso que tenga acceso a este intercambio de información pueda aprender algo sobre los datos de entrenamiento. Por esto, en los tres enfoques que seguiremos, se usará la DP para perturbar las actualizaciones de parámetros y comparar la efectividad de este entrenamiento.
 
-
 ## Enfoque por Descenso del Gradiente Estocástico
 
 El Descenso por Gradiente Estocástico es una variante del método por descenso del gradiente, el cual es un método para optimizar una función.
@@ -50,18 +49,17 @@ La idea clave del descenso de gradiente estocástico es que el gradiente es un p
 
 El gradiente estimado se calcula como:
 
-\[
-g = \frac{1}{B} \sum_{i=1}^{B} \nabla L(w, x_i).
-\]
+$$
+g = \frac{1}{B} \sum_{i=1}^{B} \nabla L(w, x_i)
+$$
 
 usando las muestras del lote. Luego, el algoritmo de descenso de gradiente estocástico ajusta los parámetros siguiendo este gradiente:
 
-\[
-w \leftarrow w - \eta g,
-\]
+$$
+w \leftarrow w - \eta g
+$$
 
 donde \( \eta \) es la tasa de aprendizaje.
-
 
 
 
