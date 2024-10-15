@@ -19,4 +19,24 @@ En esta configuración, un servidor central inicializa los parámetros de un mod
     \State $w_{t+1} \gets \frac{1}{n} \sum_{k=1}^{K} n_k w_{t+1}^k$
 \EndFor
 \end{algorithmic}
-\end{algorithm}
+\end{algorithm} 
+```
+
+
+El Aprendizaje Federado presenta una serie de ventajas:
+
+- **Privacidad**: Los datos permanecen en los dispositivos locales.
+- **Reducción de Ancho de Banda**: Solo se transfieren parámetros del modelo, no datos.
+- **Creación de muestras grandes**: Cuando de manera local no se tienen suficientes datos para entrenar un modelo, se puede hacer en conjunto con otros clientes.
+
+En contraste, también presenta desventajas o debilidades como:
+
+- **Conflictos de comunicación**: Requiere múltiples rondas de comunicación y, por lo tanto, más cooperación por parte de los clientes.
+- **Seguridad**: Riesgos de ataques como *model poisoning* (envenenamiento de parámetros) [@zhou2021deep].
+
+Aún con esto, resulta ser una alternativa viable para ciertas tareas de aprendizaje como:
+
+- **Salud**: Colaboración entre hospitales para mejorar diagnósticos sin compartir datos de pacientes.
+- **Tecnología Móvil**: Personalización de modelos en dispositivos móviles (por ejemplo, teclados predictivos, sugerencias de contenido, etc.).
+
+Pese a las ventajas y las múltiples aplicaciones que puede tener el FL, el hecho de tener un constante intercambio de parámetros lo hace vulnerable a que un adversario malicioso que tenga acceso a este intercambio de información pueda aprender algo sobre los datos de entrenamiento. Por esto, en los tres enfoques que seguiremos, se usará la DP para perturbar las actualizaciones de parámetros y comparar la efectividad de este entrenamiento.
